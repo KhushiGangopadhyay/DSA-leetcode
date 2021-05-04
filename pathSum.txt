@@ -1,0 +1,21 @@
+problem link: https://leetcode.com/problems/path-sum/
+
+class Solution {
+public:
+    int suml=0,sumr=0;
+    
+    bool hasPathSum(TreeNode* root, int t) {
+        if(root==NULL)
+        {
+           return false;
+        }
+            
+        if(t-root->val == 0 && !root->left && !root->right){
+            return true;
+        }
+        
+        bool f = hasPathSum(root->left,t-root->val) || hasPathSum(root->right,t-root->val);
+        return f;
+        
+    }
+};
