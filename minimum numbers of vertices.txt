@@ -1,0 +1,27 @@
+problem link:https://leetcode.com/problems/minimum-number-of-vertices-to-reach-all-nodes/submissions/
+
+
+class Solution {
+public:
+    vector<int> findSmallestSetOfVertices(int n, vector<vector<int>>& edges) {
+        vector<int>vec;
+        
+        if(edges.empty() && n==1)
+            return vec;
+		  
+		vector<int> in(n+1,0);
+		
+		       
+		for(auto edge : edges){
+            in[edge[1]]++;
+        }
+			        
+		for(int i=0;i<n;i++){
+            if(in[i]==0)
+                vec.push_back(i);
+        }
+		
+        return vec;
+    }
+    
+};
