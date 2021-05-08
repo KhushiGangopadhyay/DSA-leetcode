@@ -1,0 +1,22 @@
+problem link:https://leetcode.com/problems/combination-sum-iii/
+
+class Solution {
+public:
+    void helper(vector<vector<int>> &res,vector<int> &combination,int pos,int target,int k){
+        if(!target && combination.size() == k){
+            res.emplace_back(combination);
+        }
+        for(int i = pos; i <= 9; i++){
+            combination.emplace_back(i);
+            helper(res,combination,i + 1,target - i,k);
+            combination.pop_back();
+        }
+    }
+    
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<vector<int>> res;
+        vector<int> combination;
+        helper(res, combination, 1, n, k);
+        return res;
+    }
+};
