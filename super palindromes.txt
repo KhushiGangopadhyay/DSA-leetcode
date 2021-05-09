@@ -1,0 +1,29 @@
+problem link:https://leetcode.com/problems/super-palindromes/
+
+typedef unsigned long long ll;
+bool isPalindrome(string s) {
+    for(int j=0; j<(s.length()+1)/2; j++) {
+        if(s[j]!=s[s.length()-j-1]) return false;
+    }
+    return true;
+}
+class Solution {
+public:
+    int superpalindromesInRange(string left, string right) {
+        int count=0;
+        for(int i=1; i<=100000; i++) {
+            string s1 = to_string(i);
+            string s2 = s1;
+            reverse(s2.begin(), s2.end());
+            string res1 = s1+s2.substr(1); 
+            string res2 = s1+s2;           
+            ll r1 = stoll(res1);
+            ll r2 = stoll(res2);   
+            if(r1*r1 > stoll(right)) break; 
+            if(r2*r2 < stoll(left)) continue;
+            if(r1*r1>=stoll(left) && isPalindrome(to_string(r1*r1))) count++;
+            if(r2*r2<=stoll(right) && isPalindrome(to_string(r2*r2))) count++;
+        }
+        return count;
+    }
+};
