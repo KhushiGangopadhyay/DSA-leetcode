@@ -1,0 +1,32 @@
+problem link:https://leetcode.com/problems/all-paths-from-source-to-target/
+
+class Solution {
+public:
+     vector<bool> visited;
+    vector<int> ar;
+    vector<vector<int>> res;
+    
+    void helper (vector<vector<int>> graph, int start)
+    {
+        ar.push_back(start);
+        
+        if(start==graph.size()-1)
+        {
+            res.push_back(ar);
+        }
+                   
+        for(int i=0;i<graph[start].size();i++)
+            {
+                helper(graph , graph[start][i]);   
+            }
+    ar.pop_back();               
+    
+    }
+    
+    
+    vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
+      
+        helper (graph , 0);
+        return res;
+    }
+};
