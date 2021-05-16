@@ -1,0 +1,26 @@
+problem link: https://leetcode.com/problems/maximal-network-rank/
+
+class Solution {
+public:
+     int maximalNetworkRank(int n, vector<vector<int>>& roads) {
+        int max_val = 0;
+        vector<unordered_set<int>> mat(n);
+        //adjacency matrix
+        for(vector<int> road : roads){
+            mat[road[0]].insert(road[1]);
+            mat[road[1]].insert(road[0]);
+        }
+        
+        for(int i=0; i<n; i++){
+            for(int j=i+1; j<n; j++){
+                int curr_val = mat[i].size() + mat[j].size();
+                
+                if(mat[i].find(j) != mat[i].end())
+                    curr_val--;
+                max_val = max(max_val, curr_val);
+            }
+        }
+        
+        return max_val;
+    }
+};
