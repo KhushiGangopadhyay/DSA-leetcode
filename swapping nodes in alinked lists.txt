@@ -1,0 +1,21 @@
+problem link: https://leetcode.com/problems/swapping-nodes-in-a-linked-list/
+
+class Solution {
+public:
+    ListNode* swapNodes(ListNode* head, int k) 
+    {
+        if(!head || !head->next)
+        {
+            return head;
+        }
+        vector<ListNode *>v;
+        ListNode *tmp=head;
+        while(tmp)
+        {
+            v.push_back(tmp);
+            tmp=tmp->next;
+        }
+        swap(v[k-1]->val,v[v.size()-k]->val);
+        return head;
+    }
+};
