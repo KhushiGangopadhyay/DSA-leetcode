@@ -1,0 +1,25 @@
+problem link:https://leetcode.com/problems/increasing-order-search-tree/
+
+
+class Solution {
+public:
+    TreeNode * cur;
+    TreeNode* increasingBST(TreeNode* root) {
+        TreeNode* ans = new TreeNode(0);
+        cur = ans;
+        inorder(root);
+        return ans->right;
+             
+    }
+    
+     void inorder(TreeNode* node)
+    {
+        if(node==NULL)
+            return;
+        inorder(node->left);
+        node->left= NULL;
+        cur->right = node;
+        cur = node;
+        inorder(node->right);
+    }
+};
